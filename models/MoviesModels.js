@@ -10,10 +10,10 @@ const MoviesSchema = new Schema( {
         type: String,
         required: [true, "Please provide Movie name"],
     },
-    upcoming: {
-        type: String,
-        required: [true, "Please provide Movie name"],
-    },
+    // upcoming: {
+    //     type: String,
+    //     required: [true, "Please provide Movie name"],
+    // },
    
     image: {
         type: String,
@@ -25,6 +25,14 @@ const MoviesSchema = new Schema( {
         required: [true, "please write about the movie"]
     },
     genre: {
+        type: String,
+        required: [true, "please write movie type"]
+    },
+    rating: {
+        type: Number,
+        required: [true, "please write movie type"]
+    },
+    trailor: {
         type: String,
         required: [true, "please write movie type"]
     },
