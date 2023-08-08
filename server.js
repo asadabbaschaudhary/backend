@@ -189,19 +189,19 @@ app.delete("/delete-movies/:id", async (request, response) => {
   }
 });
 
-app.put("/update-movies/:id", async (request, response) => {
+app.put("/update-movies/:id", upload.single("image") ,async  (request, response) => {
   const id = request.params.id;
 
-  // if (request.file.mimetype == "image/png" || request.file.mimetype == "image/jpg" || request.file.mimetype == "image/jpeg") {
-  //   let ext = request.file.mimetype.split("/")[1];
-  //   if (ext == "plain") { ext = "txt"; }
-  //   const NewImgName = request.file.path + "." + ext;
-  //   request.body.image = NewImgName;
-  //   fs.rename(request.file.path, NewImgName, () => { console.log("done") });
+  if (request.file.mimetype == "image/png" || request.file.mimetype == "image/jpg" || request.file.mimetype == "image/jpeg") {
+    let ext = request.file.mimetype.split("/")[1];
+    if (ext == "plain") { ext = "txt"; }
+    const NewImgName = request.file.path + "." + ext;
+    request.body.image = NewImgName;
+    fs.rename(request.file.path, NewImgName, () => { console.log("done") });
 
-  // } else {
-  //   fs.unlink(request.file.path, () => { console.log("deleted") });
-  // }
+  } else {
+    fs.unlink(request.file.path, () => { console.log("deleted") });
+  }
 
   try {
     await MoviesModels.findByIdAndUpdate(id, request.body);
