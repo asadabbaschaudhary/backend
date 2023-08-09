@@ -9,6 +9,8 @@ const fs = require("fs");
 const cors = require("cors");
 const path = require("path");
 
+
+
 app.use(express.json());
 app.use(
   cors({
@@ -258,6 +260,23 @@ app.get("/detail/:id", async (request, response) => {
     });
   }
 });
+
+
+// app.post('/login', (req, res) => {
+//   const { email, password } = req.body;
+
+//   if (!email || !password) {
+//     return res.status(400).json({ message: 'Invalid Username Or Password!' });
+//   }
+
+//   const user = users.find(u => u.email === email);
+
+//   if (!user || user.password !== password) {
+//     return res.status(401).json({ message: 'Invalid credentials' });
+//   }
+
+//   return res.json({ message: 'Login successful' });
+// });
 
 
 // mongodb+srv://asadabbaschaudhary:<password>@cluster0.2x5lurk.mongodb.net/
