@@ -8,7 +8,7 @@ const upload = multer({ dest: "uploads/" });
 const fs = require("fs");
 const cors = require("cors");
 const path = require("path");
-
+require('dotenv').config();
 
 
 app.use(express.json());
@@ -281,8 +281,8 @@ app.get("/detail/:id", async (request, response) => {
 
 // mongodb+srv://asadabbaschaudhary:<password>@cluster0.2x5lurk.mongodb.net/
 
-mongoose.connect("mongodb+srv://asadabbaschaudhary:alitabattleangle1234567890@cluster0.2x5lurk.mongodb.net/moviesDb").then(() => {
-  app.listen(3001, () => {
+mongoose.connect(process.env.DB).then(() => {
+  app.listen(process.env.PORT, () => {
     console.log(`BACKEND WORKING GOOD`);
   });
 });
