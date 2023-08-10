@@ -48,8 +48,9 @@ const MoviesSchema = new Schema( {
 }, {toJSON: {getters: true} });
 
 function linkUrl (image) {
-    const name = image.replace('uploads\\',"")
-    return ("https://backend-gules-zeta.vercel.app/" + name);
+    // const name = image.replace('uploads\\',"")
+    // return ("https://backend-gules-zeta.vercel.app/" + name);
+    return ("http://localhost:3001/" + image);
 }
 
 const MoviesModels = mongoose.model('Movie', MoviesSchema);

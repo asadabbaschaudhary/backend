@@ -6,8 +6,36 @@ const TvShowModel = require("../models/TvShowModel");
 const cors = require("cors");
 // const multer = require("multer");
 // const upload = multer({ dest: "../public/" });
+const  {v2} =require('cloudinary');
+          
+v2.config({ 
+  cloud_name: 'dxyayoqgq', 
+  api_key: '436438823682386', 
+  api_secret: 'VIVrthzaiQJ2QFpYQZcjgKRQhFU' 
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 app.get("/api", async (request, response) => {
+
+  v2.uploader.upload("http://localhost:3001//public/01d523516aa4134653c80127506b7d4b.jpeg",
+  { public_id: "olympic_flag" }, 
+  function(error, result) {console.log(result); });
+
     return response.json({
         status: true,
         movies: "hello",
@@ -269,6 +297,11 @@ app.get("/api/detail/:id", async (request, response) => {
 
 mongoose.connect("mongodb+srv://asadabbaschaudhary:alitabattleangle1234567890@cluster0.2x5lurk.mongodb.net/moviesDb").then(() => {
    console.log("DB connect")
+
+   app.listen(3001, () => {
+    console.log(`BACKEND WORKING GOOD`);
+  });
+
   });
 
   module.exports = app;
