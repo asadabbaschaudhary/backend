@@ -9,7 +9,7 @@ app.get("/api/movies", async (request, response) => {
   });
 
 
-mongoose.connect(process.env.DB).then(() => {
+mongoose.connect("mongodb+srv://asadabbaschaudhary:alitabattleangle1234567890@cluster0.2x5lurk.mongodb.net/moviesDb").then(() => {
    console.log("DB connect")
   });
 
