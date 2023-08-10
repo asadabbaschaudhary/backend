@@ -4,8 +4,8 @@ const mongoose = require("mongoose");
 const MoviesModels = require("../models/MoviesModels");
 const TvShowModel = require("../models/TvShowModel");
 const cors = require("cors");
-const multer = require("multer");
-const upload = multer({ dest: "../public/" });
+// const multer = require("multer");
+// const upload = multer({ dest: "../public/" });
 
 app.get("/api", async (request, response) => {
     return response.json({
@@ -73,51 +73,51 @@ app.get("/api/movies/:id", async (request, response) => {
   }
 });
 
-app.post(
-  "/api/create-movies",
-  upload.single("image"),
-  async (request, response) => {
-    if (
-      request.file.mimetype == "image/png" ||
-      request.file.mimetype == "image/jpg" ||
-      request.file.mimetype == "image/jpeg"
-    ) {
-      let ext = request.file.mimetype.split("/")[1];
-      if (ext == "plain") {
-        ext = "txt";
-      }
-      const NewImgName = request.file.path + "." + ext;
-      request.body.image = NewImgName;
-      fs.rename(request.file.path, NewImgName, () => {
-        console.log("done");
-      });
-    } else {
-      fs.unlink(request.file.path, () => {
-        console.log("deleted");
-      });
-    }
+// app.post(
+//   "/api/create-movies",
+//   upload.single("image"),
+//   async (request, response) => {
+//     if (
+//       request.file.mimetype == "image/png" ||
+//       request.file.mimetype == "image/jpg" ||
+//       request.file.mimetype == "image/jpeg"
+//     ) {
+//       let ext = request.file.mimetype.split("/")[1];
+//       if (ext == "plain") {
+//         ext = "txt";
+//       }
+//       const NewImgName = request.file.path + "." + ext;
+//       request.body.image = NewImgName;
+//       fs.rename(request.file.path, NewImgName, () => {
+//         console.log("done");
+//       });
+//     } else {
+//       fs.unlink(request.file.path, () => {
+//         console.log("deleted");
+//       });
+//     }
 
-    try {
-      await MoviesModels.create(request.body);
-      return response.json({
-        status: true,
-      });
-    } catch (error) {
-      if (error.name === "ValidationError") {
-        let errors = {};
+//     try {
+//       await MoviesModels.create(request.body);
+//       return response.json({
+//         status: true,
+//       });
+//     } catch (error) {
+//       if (error.name === "ValidationError") {
+//         let errors = {};
 
-        Object.keys(error.errors).forEach((key) => {
-          errors[key] = error.errors[key].message;
-        });
+//         Object.keys(error.errors).forEach((key) => {
+//           errors[key] = error.errors[key].message;
+//         });
 
-        return response.json({
-          status: false,
-          errors: errors,
-        });
-      }
-    }
-  }
-);
+//         return response.json({
+//           status: false,
+//           errors: errors,
+//         });
+//       }
+//     }
+//   }
+// );
 
 app.get("/api/tvshow", async (request, response) => {
   console.log("yes");
@@ -135,51 +135,51 @@ app.get("/api/tvshow", async (request, response) => {
     });
   }
 });
-app.post(
-  "/api/create-TVShow",
-  upload.single("image"),
-  async (request, response) => {
-    if (
-      request.file.mimetype == "image/png" ||
-      request.file.mimetype == "image/jpg" ||
-      request.file.mimetype == "image/jpeg"
-    ) {
-      let ext = request.file.mimetype.split("/")[1];
-      if (ext == "plain") {
-        ext = "txt";
-      }
-      const NewImgName = request.file.path + "." + ext;
-      request.body.image = NewImgName;
-      fs.rename(request.file.path, NewImgName, () => {
-        console.log("done");
-      });
-    } else {
-      fs.unlink(request.file.path, () => {
-        console.log("deleted");
-      });
-    }
+// app.post(
+//   "/api/create-TVShow",
+//   upload.single("image"),
+//   async (request, response) => {
+//     if (
+//       request.file.mimetype == "image/png" ||
+//       request.file.mimetype == "image/jpg" ||
+//       request.file.mimetype == "image/jpeg"
+//     ) {
+//       let ext = request.file.mimetype.split("/")[1];
+//       if (ext == "plain") {
+//         ext = "txt";
+//       }
+//       const NewImgName = request.file.path + "." + ext;
+//       request.body.image = NewImgName;
+//       fs.rename(request.file.path, NewImgName, () => {
+//         console.log("done");
+//       });
+//     } else {
+//       fs.unlink(request.file.path, () => {
+//         console.log("deleted");
+//       });
+//     }
 
-    try {
-      await TvShowModel.create(request.body);
-      return response.json({
-        status: true,
-      });
-    } catch (error) {
-      if (error.name === "ValidationError") {
-        let errors = {};
+//     try {
+//       await TvShowModel.create(request.body);
+//       return response.json({
+//         status: true,
+//       });
+//     } catch (error) {
+//       if (error.name === "ValidationError") {
+//         let errors = {};
 
-        Object.keys(error.errors).forEach((key) => {
-          errors[key] = error.errors[key].message;
-        });
+//         Object.keys(error.errors).forEach((key) => {
+//           errors[key] = error.errors[key].message;
+//         });
 
-        return response.json({
-          status: false,
-          errors: errors,
-        });
-      }
-    }
-  }
-);
+//         return response.json({
+//           status: false,
+//           errors: errors,
+//         });
+//       }
+//     }
+//   }
+// );
 
 app.delete("/api/delete-movies/:id", async (request, response) => {
   const id = request.params.id;
@@ -195,40 +195,40 @@ app.delete("/api/delete-movies/:id", async (request, response) => {
   }
 });
 
-app.put("/api/update-movies/:id", upload.single("image") ,async  (request, response) => {
-  const id = request.params.id;
+// app.put("/api/update-movies/:id", upload.single("image") ,async  (request, response) => {
+//   const id = request.params.id;
 
-  if (request.file.mimetype == "image/png" || request.file.mimetype == "image/jpg" || request.file.mimetype == "image/jpeg") {
-    let ext = request.file.mimetype.split("/")[1];
-    if (ext == "plain") { ext = "txt"; }
-    const NewImgName = request.file.path + "." + ext;
-    request.body.image = NewImgName;
-    fs.rename(request.file.path, NewImgName, () => { console.log("done") });
+//   if (request.file.mimetype == "image/png" || request.file.mimetype == "image/jpg" || request.file.mimetype == "image/jpeg") {
+//     let ext = request.file.mimetype.split("/")[1];
+//     if (ext == "plain") { ext = "txt"; }
+//     const NewImgName = request.file.path + "." + ext;
+//     request.body.image = NewImgName;
+//     fs.rename(request.file.path, NewImgName, () => { console.log("done") });
 
-  } else {
-    fs.unlink(request.file.path, () => { console.log("deleted") });
-  }
+//   } else {
+//     fs.unlink(request.file.path, () => { console.log("deleted") });
+//   }
 
-  try {
-    await MoviesModels.findByIdAndUpdate(id, request.body);
-    return response.json({
-      status: true,
-    });
-  } catch (error) {
-    if (error.name === "ValidationError") {
-      let errors = {};
+//   try {
+//     await MoviesModels.findByIdAndUpdate(id, request.body);
+//     return response.json({
+//       status: true,
+//     });
+//   } catch (error) {
+//     if (error.name === "ValidationError") {
+//       let errors = {};
 
-      Object.keys(error.errors).forEach((key) => {
-        errors[key] = error.errors[key].message;
-      });
+//       Object.keys(error.errors).forEach((key) => {
+//         errors[key] = error.errors[key].message;
+//       });
 
-      return response.json({
-        status: false,
-        errors: errors,
-      });
-    }
-  }
-});
+//       return response.json({
+//         status: false,
+//         errors: errors,
+//       });
+//     }
+//   }
+// });
 
 app.get("/api/search", async (request, response) => {
   const search = request.query.q;
