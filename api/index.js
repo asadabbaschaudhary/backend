@@ -3,6 +3,7 @@ const app = express();
 const mongoose = require("mongoose");
 const MoviesModels = require("../models/MoviesModels");
 const TvShowModel = require("../models/TvShowModel");
+const cors = require("cors");
 
 
 app.get("/api", async (request, response) => {
