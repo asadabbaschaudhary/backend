@@ -5,7 +5,7 @@ const MoviesModels = require("../models/MoviesModels");
 const TvShowModel = require("../models/TvShowModel");
 const cors = require("cors");
 const multer = require("multer");
-const upload = multer({ dest: "public/" });
+const upload = multer({ dest: "../public/" });
 
 app.get("/api", async (request, response) => {
     return response.json({
