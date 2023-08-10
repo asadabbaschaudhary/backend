@@ -48,7 +48,8 @@ const MoviesSchema = new Schema( {
 }, {toJSON: {getters: true} });
 
 function linkUrl (image) {
-    return ("http://localhost:3001/" + image);
+    const name = image.replace('uploads\\',"")
+    return ("http://localhost:3001/" + name);
 }
 
 const MoviesModels = mongoose.model('Movie', MoviesSchema);
